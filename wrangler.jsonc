@@ -1,0 +1,8 @@
+{
+  // Configurazione Cloudflare Workers: sito statico, nessun codice server
+  "name": "paulette-intimo",
+  "compatibility_date": "2026-09-24",
+  "assets": {
+    "directory": "./"
+  }
+}
