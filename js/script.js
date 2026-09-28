@@ -45,8 +45,31 @@ if ('IntersectionObserver' in window && revealItems.length) {
   revealItems.forEach(item => item.classList.add('is-visible'));
 }
 
+/* Hero slideshow */
+const slides = document.querySelectorAll('.hero-slide');
+const dotsWrap = document.querySelector('.hero-dots');
+if (slides.length > 1) {
+  let current = 0;
+  const dots = [...slides].map((_, i) => {
+    const dot = document.createElement('span');
+    if (i === 0) dot.classList.add('is-active');
+    dotsWrap.appendChild(dot);
+    return dot;
+  });
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduceMotion) {
+    setInterval(() => {
+      slides[current].classList.remove('is-active');
+      dots[current].classList.remove('is-active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('is-active');
+      dots[current].classList.add('is-active');
+    }, 4500);
+  }
+}
+
 /* Google Maps cookie consent gate */
-const MAPS_SRC = 'https://www.google.com/maps?q=Via+Mazzini+42&output=embed';
+const MAPS_SRC = 'https://www.google.com/maps?q=Via+Mazzini+42,+30031+Dolo+VE&output=embed';
 const MAPS_CONSENT_KEY = 'paulette-maps-consent';
 const mapFrame = document.getElementById('mapFrame');
 const mapConsent = document.getElementById('mapConsent');
@@ -59,7 +82,7 @@ function loadMap() {
   iframe.src = MAPS_SRC;
   iframe.loading = 'lazy';
   iframe.referrerPolicy = 'no-referrer-when-downgrade';
-  iframe.title = 'Mappa: Paulette {intimamente}, Via Mazzini 42';
+  iframe.title = 'Mappa: Paulette {intimamente}, Via Mazzini 42, Dolo (VE)';
   mapFrame.appendChild(iframe);
   mapConsent.classList.add('is-hidden');
   setTimeout(() => mapConsent.remove(), 400);
