@@ -185,9 +185,9 @@ ul{ margin:0; padding:0; list-style:none; }
 
 /* Sections */
 section{ scroll-margin-top:130px; }
-.section{ padding:6rem 0; }
+.section{ padding:3.75rem 0; }
 .section-intro{ max-width:540px; color:var(--muted); font-size:1rem; }
-.section-head{ margin-bottom:2.8rem; }
+.section-head{ margin-bottom:2rem; }
 .section h2{ font-size:clamp(2rem, 3.4vw, 2.8rem); margin-bottom:1.2rem; }
 
 /* Chi siamo */
@@ -195,11 +195,40 @@ section{ scroll-margin-top:130px; }
   display:grid; grid-template-columns:.9fr 1.1fr; gap:2rem; align-items:center;
   position:relative;
 }
-.about-numeral{
-  font-family:"Fraunces", serif; font-weight:900; font-style:italic;
-  font-size:clamp(6rem, 15vw, 13rem); line-height:1; color:var(--blush);
+.about-mark{
+  position:relative; display:flex; flex-direction:column; align-items:center;
+  justify-content:center; aspect-ratio:1; max-width:420px; width:100%; margin:0 auto;
   user-select:none;
 }
+.about-lace{ position:absolute; inset:0; width:100%; height:100%; color:var(--line); opacity:.55; }
+.about-numeral{
+  position:relative; font-family:"Fraunces", serif; font-weight:900; font-style:italic;
+  font-size:clamp(4.5rem, 9vw, 7.5rem); line-height:1; color:var(--rosa);
+}
+.about-caption{
+  position:relative; margin-top:.6rem; font-size:.68rem; font-weight:700;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--rosa-deep);
+}
+
+/* Valori — tre colonne con filetti oro */
+.values{
+  display:grid; grid-template-columns:repeat(3, 1fr); margin-top:3rem;
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+}
+.values li{ padding:1.6rem 1.8rem; display:flex; flex-direction:column; gap:.35rem; }
+.values li + li{ border-left:1px solid rgba(201,166,104,.45); }
+.values-num{ font-family:"Fraunces", serif; font-style:italic; color:var(--line); font-size:1.1rem; }
+.values strong{ font-family:"Fraunces", serif; font-weight:600; font-size:1.15rem; }
+.values li > span:last-child{ font-size:.88rem; color:var(--muted); }
+
+/* Ornamento tra le sezioni */
+.ornament{
+  display:flex; align-items:center; justify-content:center; gap:1rem;
+  max-width:1180px; margin:0 auto; padding:0 24px; color:var(--line);
+}
+.ornament svg{ width:40px; height:16px; flex:none; }
+.ornament-line{ flex:1; max-width:220px; height:1px; background:linear-gradient(90deg, transparent, var(--line)); }
+.ornament-line:last-child{ background:linear-gradient(90deg, var(--line), transparent); }
 .about-text p{ color:#4a3a3d; max-width:480px; }
 .signature{
   font-family:"Fraunces", serif; font-style:italic; font-size:1.35rem;
@@ -208,7 +237,7 @@ section{ scroll-margin-top:130px; }
 .signature span{ color:var(--ink); }
 
 /* Collections rail */
-.section-collections{ padding-bottom:5rem; }
+.section-collections{ padding-bottom:3.75rem; }
 .collections-rail{
   display:grid; grid-template-columns:repeat(4, 1fr);
   gap:2px; background:var(--ink);
@@ -234,7 +263,7 @@ section{ scroll-margin-top:130px; }
 
 /* Sartoria — full-bleed split */
 .section-split{ display:grid; grid-template-columns:1fr 1fr; }
-.split-panel{ padding:5rem 3.5rem; display:flex; flex-direction:column; justify-content:center; }
+.split-panel{ padding:4rem 3.5rem; display:flex; flex-direction:column; justify-content:center; }
 .split-panel-ink{ background:var(--ink); color:var(--cream); }
 .split-panel-rosa{ background:var(--rosa); color:var(--ink); }
 .split-panel-rosa .tailoring-icon{ color:var(--ink); }
@@ -242,12 +271,41 @@ section{ scroll-margin-top:130px; }
 .split-heading{ color:var(--white); font-size:clamp(2.2rem, 4vw, 3.4rem); }
 .tailoring-icon{ width:52px; height:52px; color:var(--line); margin-bottom:1.4rem; display:inline-flex; }
 .split-panel-rosa p{ max-width:420px; margin-bottom:1.8rem; }
+.split-panel{ position:relative; }
+/* Cucitura: impuntura tratteggiata all'interno del pannello rosa */
+.split-panel-rosa::before{
+  content:""; position:absolute; inset:18px; pointer-events:none;
+  border:1px dashed rgba(28,18,20,.35); border-radius:var(--radius);
+}
+.split-services{
+  margin:1.4rem 0 0; font-family:"Fraunces", serif; font-style:italic;
+  color:var(--rosa); font-size:1.05rem;
+}
+/* Metro da sarta */
+.tape{
+  display:flex; justify-content:space-between; margin-top:2.4rem; max-width:340px;
+  padding-top:18px; font-size:.62rem; color:var(--line); letter-spacing:.05em;
+  background:
+    repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px 8.5px) top left / 100% 7px no-repeat,
+    repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px 85px) top left / 100% 14px no-repeat;
+  border-top:1px solid var(--line);
+}
+.tape span{ translate:-50% 0; }
+.tape span:first-child{ translate:0 0; }
+.tape span:last-child{ translate:0 0; }
 
 /* Questions box — flat bordered */
 .questions-box{
-  max-width:680px; margin:0 auto; text-align:center;
+  position:relative; max-width:680px; margin:0 auto; text-align:center;
   border:1.5px solid var(--ink); border-radius:var(--radius); padding:3.2rem 2.5rem;
+  outline:1px solid var(--line); outline-offset:7px;
 }
+/* Angoli decorativi oro */
+.corner{ position:absolute; width:22px; height:22px; border:0 solid var(--line); }
+.corner-tl{ top:10px; left:10px; border-top-width:1px; border-left-width:1px; }
+.corner-tr{ top:10px; right:10px; border-top-width:1px; border-right-width:1px; }
+.corner-bl{ bottom:10px; left:10px; border-bottom-width:1px; border-left-width:1px; }
+.corner-br{ bottom:10px; right:10px; border-bottom-width:1px; border-right-width:1px; }
 .questions-box .eyebrow, .questions-box h2, .questions-box .section-intro{ margin-left:auto; margin-right:auto; }
 .questions-actions{ display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin-top:1.8rem; }
 
@@ -303,7 +361,12 @@ section{ scroll-margin-top:130px; }
 }
 
 /* Footer */
-.site-footer{ background:var(--ink); color:var(--cream); padding:2.6rem 0; }
+.site-footer{ position:relative; background:var(--ink); color:var(--cream); padding:2.6rem 0; }
+/* Bordo smerlato, come un pizzo */
+.scallop{
+  position:absolute; left:0; right:0; top:-11px; height:12px;
+  background:radial-gradient(circle at 12px 12px, var(--ink) 11.5px, transparent 12px) 0 0 / 24px 12px repeat-x;
+}
 .footer-inner{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.4rem; }
 .footer-logo{ height:26px; width:auto; opacity:.9; }
 .footer-nav{ display:flex; gap:1.6rem; flex-wrap:wrap; }
@@ -341,6 +404,9 @@ section{ scroll-margin-top:130px; }
   .about-numeral{ font-size:5rem; }
   .section-split{ grid-template-columns:1fr; }
   .contact-grid{ grid-template-columns:1fr; }
+  .values{ grid-template-columns:1fr; }
+  .values li + li{ border-left:none; border-top:1px solid rgba(201,166,104,.45); }
+  .about-mark{ max-width:280px; }
 }
 
 @media (max-width: 900px){
@@ -357,7 +423,7 @@ section{ scroll-margin-top:130px; }
     grid-template-columns:1fr; gap:2px;
   }
   .collection-tile{ min-height:200px; }
-  .section{ padding:3.6rem 0; }
+  .section{ padding:2.8rem 0; }
 }
 
 @media (max-width: 560px){
@@ -365,6 +431,7 @@ section{ scroll-margin-top:130px; }
   .hero-block-gallery{ min-height:100vw; padding:0; }
   .whatsapp-float{ width:52px; height:52px; right:16px; bottom:16px; }
   .questions-box{ padding:2.2rem 1.4rem; }
-  .split-panel{ padding:3rem 1.4rem; }
+  .split-panel{ padding:3rem 1.8rem; }
+  .split-panel-rosa::before{ inset:10px; }
   .ticker-track{ font-size:.64rem; }
 }
