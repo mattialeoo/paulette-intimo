@@ -40,9 +40,13 @@ ul{ margin:0; padding:0; list-style:none; }
 .container{ max-width:1180px; margin:0 auto; padding:0 24px; }
 
 .eyebrow{
+  display:flex; align-items:center; gap:.65rem;
   text-transform:uppercase; letter-spacing:.16em; font-size:.72rem;
   color:var(--rosa-deep); font-weight:700; margin:0 0 .9rem;
   font-family:"Archivo", sans-serif;
+}
+.eyebrow::before{
+  content:""; width:22px; height:1.5px; flex:0 0 auto; background:var(--line);
 }
 .eyebrow-light{ color:var(--line); }
 
@@ -185,9 +189,9 @@ ul{ margin:0; padding:0; list-style:none; }
 
 /* Sections */
 section{ scroll-margin-top:130px; }
-.section{ padding:6rem 0; }
+.section{ padding:4rem 0; }
 .section-intro{ max-width:540px; color:var(--muted); font-size:1rem; }
-.section-head{ margin-bottom:2.8rem; }
+.section-head{ margin-bottom:2rem; }
 .section h2{ font-size:clamp(2rem, 3.4vw, 2.8rem); margin-bottom:1.2rem; }
 
 /* Chi siamo */
@@ -208,7 +212,7 @@ section{ scroll-margin-top:130px; }
 .signature span{ color:var(--ink); }
 
 /* Collections rail */
-.section-collections{ padding-bottom:5rem; }
+.section-collections{ padding-bottom:3rem; }
 .collections-rail{
   display:grid; grid-template-columns:repeat(4, 1fr);
   gap:2px; background:var(--ink);
@@ -234,8 +238,8 @@ section{ scroll-margin-top:130px; }
 
 /* Sartoria — full-bleed split */
 .section-split{ display:grid; grid-template-columns:1fr 1fr; }
-.split-panel{ padding:5rem 3.5rem; display:flex; flex-direction:column; justify-content:center; }
-.split-panel-ink{ background:var(--ink); color:var(--cream); }
+.split-panel{ padding:3.75rem 3.5rem; display:flex; flex-direction:column; justify-content:center; position:relative; }
+.split-panel-ink{ background:var(--ink); color:var(--cream); overflow:hidden; }
 .split-panel-rosa{ background:var(--rosa); color:var(--ink); }
 .split-panel-rosa .tailoring-icon{ color:var(--ink); }
 .split-panel-rosa .btn-solid-light:hover{ background:var(--ink); color:var(--white); }
@@ -243,16 +247,37 @@ section{ scroll-margin-top:130px; }
 .tailoring-icon{ width:52px; height:52px; color:var(--line); margin-bottom:1.4rem; display:inline-flex; }
 .split-panel-rosa p{ max-width:420px; margin-bottom:1.8rem; }
 
-/* Questions box — flat bordered */
+/* Decorative brace motif — echoes the {intimamente} logo lockup */
+.ornament-brace{
+  position:absolute; font-family:"Fraunces", serif; font-style:italic; font-weight:300;
+  line-height:1; user-select:none; pointer-events:none; z-index:0;
+}
+.brace-ink{
+  left:-.5rem; bottom:-3.2rem; font-size:15rem; color:rgba(250,246,243,.06);
+}
+.split-panel-ink > *{ position:relative; z-index:1; }
+
+/* Questions box — flat bordered, flanked by decorative braces */
+.questions-wrap{ max-width:680px; margin:0 auto; position:relative; }
 .questions-box{
-  max-width:680px; margin:0 auto; text-align:center;
+  text-align:center;
   border:1.5px solid var(--ink); border-radius:var(--radius); padding:3.2rem 2.5rem;
 }
+.questions-box .eyebrow{ justify-content:center; }
 .questions-box .eyebrow, .questions-box h2, .questions-box .section-intro{ margin-left:auto; margin-right:auto; }
 .questions-actions{ display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin-top:1.8rem; }
+.brace-left, .brace-right{
+  top:50%; transform:translateY(-50%); font-size:6.5rem; color:var(--rosa-deep); opacity:.3;
+}
+.brace-left{ left:-3rem; }
+.brace-right{ right:-3rem; }
+@media (max-width: 980px){
+  .brace-left, .brace-right{ display:none; }
+}
 
 /* Contact */
 .contact-grid{ display:grid; grid-template-columns:.9fr 1.1fr; gap:3rem; align-items:start; }
+.contact-media{ margin-top:2.3rem; }
 .contact-list li{ padding:1.05rem 0; border-bottom:1px solid rgba(28,18,20,.12); }
 .contact-list .contact-label{
   display:block; text-transform:uppercase; letter-spacing:.12em; font-size:.68rem;
@@ -341,6 +366,7 @@ section{ scroll-margin-top:130px; }
   .about-numeral{ font-size:5rem; }
   .section-split{ grid-template-columns:1fr; }
   .contact-grid{ grid-template-columns:1fr; }
+  .contact-media{ margin-top:0; }
 }
 
 @media (max-width: 900px){
@@ -357,7 +383,7 @@ section{ scroll-margin-top:130px; }
     grid-template-columns:1fr; gap:2px;
   }
   .collection-tile{ min-height:200px; }
-  .section{ padding:3.6rem 0; }
+  .section{ padding:2.75rem 0; }
 }
 
 @media (max-width: 560px){
